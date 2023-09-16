@@ -1,0 +1,11 @@
+#answers > div > feedback {
+    color: blue;
+}
+
+button {
+    padding: 10px;
+}
+
+button:hover {
+    background-color: lightblue;
+}
