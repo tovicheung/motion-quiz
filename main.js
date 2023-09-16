@@ -1,6 +1,6 @@
-function random(min, max, roundto) {
+function random(min, max) {
     // roundto is currently unused
-    return parseFloat((Math.random() * (max - min) + min).toFixed(roundto));
+    return parseInt(Math.random() * (max - min) + min);
 }
 
 function choice(array) {
@@ -44,11 +44,18 @@ class Motion {
     }
 }
 
+const Symbol = {
+    d: 0,
+    s: 0,
+    t: 0,
+}
+
 function reset() {
     document.getElementById("quiz").innerHTML = "";
 }
 
 function ize(a) {
+    // did not know what to name
     return decimals(a) >= 3 ? a.toPrecision(3) : a;
 }
 
@@ -60,7 +67,7 @@ function childs(n) {
     return [ ... n.childNodes].filter(o => o.nodeName != "#text")
 }
 
-function check() {
+function calculate() {
     let d = 0;
     let s = 0;
     let t = 0;
@@ -69,48 +76,65 @@ function check() {
         t += m.duration;
         s += m.magnitude * m.duration * m.direction;
     });
+    Symbol.d = d;
+    Symbol.s = s;
+    Symbol.t = t;
+}
+
+function check() {
+    calculate();
     childs(document.getElementById("answers")).forEach(field => {
         let formula = field.getAttribute("formula");
         let c = ize(eval(formula));
         let nodes = childs(field);
-        console.log(calc(nodes[1].value) == c);
-        if (calc(nodes[1].value) == c) {
-            nodes[3].innerText = "Correct!";
-        } else {
-            nodes[3].innerText = "Wrong";
+        if (nodes[1].value == "") {
+            nodes[3].innerText = "Empty input";
+            return;
+        }
+        try {
+            nodes[3].innerText = calc(nodes[1].value) == c ? "Correct" : "Wrong";
+        } catch (e) {
+            console.log(e);
+            nodes[3].innerText = "Invalid input (error occured)"
         }
     })
-    // let as = ize(d/t);
-    // let av = ize(s/t);
-    // eval("console.log('yo', d)");
-    // document.getElementById("input-average-speed")
-    // let inputas = calc(document.getElementById("input-average-speed").value);
-    // let inputav = calc(document.getElementById("input-average-velocity").value);
-    // console.log(inputas == as, inputas, as);
-    // console.log(inputav == av, inputav, av);
 }
 
-function show() {let d = 0;
-    let s = 0;
-    let t = 0;
-    motions.forEach(m => {
-        d += m.magnitude * m.duration;
-        t += m.duration;
-        s += m.magnitude * m.duration * m.direction;
-        childs(document.getElementById("answers")).forEach(field => {
-            let formula = field.getAttribute("formula");
-            let c = ize(eval(formula));
-            let nodes = childs(field);
-            nodes[3].innerText = `Answer: ${c}`;
-        })
-    });
+function show() {
+    calculate();
+    childs(answers).forEach(field => {
+        let formula = field.getAttribute("formula");
+        let c = ize(eval(formula));
+        let nodes = childs(field);
+        nodes[3].innerText = `Answer: ${c}`;
+    })
 }
 
-let motions;
-addEventListener("DOMContentLoaded", () => {
+function clear() {
+    // buggy, should be unused
+    alert("an error occured.")
+    console.log("e")
+    childs(answers).forEach(field => {
+        let nodes = childs(field);
+        nodes[1].value = "";
+        nodes[3].innerText = "";
+        console.log(nodes);
+    })
+}
+
+const quiz = document.getElementById("quiz");
+const answers = document.getElementById("answers");
+
+function reload() {
     motions = new Array();
+    while (quiz.hasChildNodes()) {
+        quiz.removeChild(quiz.childNodes[0]);
+    }
     for (i = 0; i < 3; i++) {
         motions.push(Motion.rand());
     }
     motions.forEach(m => m.display());
-})
+}
+
+let motions;
+addEventListener("DOMContentLoaded", reload)

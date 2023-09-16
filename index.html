@@ -1,16 +1,19 @@
 <link rel="stylesheet" href="style.css">
 <div id="quiz"></div>
 <div id="answers">
-    <div formula="d/t">
+    <div formula="Symbol.d/Symbol.t">
         <span>Average speed: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
     </div>
-    <div formula="s/t">
+    <div formula="Symbol.s/Symbol.t">
         <span>Average velocity: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
     </div>
 </div>
 <br>
 <button onclick="check()">Submit</button>
 <button onclick="show()">Show answer</button>
-<button onclick="location.reload()">New question</button>
+<button onclick="reload()">New question</button>
+<!-- <button onclick="clear()">Clear</button> BUGGY -->
+<p>Valid characters: 0123456789.+-*/()</p>
+<p>Ohter characters will be ignored</p>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
 <script src="main.js"></script>
