@@ -15,6 +15,10 @@ button {
     text-decoration: none;
 }
 
+button.disabled {
+    background-color: grey;
+}
+
 .footer {
     position: fixed;
     height: 50px;

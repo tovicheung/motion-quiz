@@ -19,24 +19,29 @@
     <div class="container">
         <div class="center">
             <h1>motion quiz</h1>
-            <b>The following is a cart's motion</b>
+            <b>Consider the following motions of a cart:</b>
             <p>- - - - - - - - - - - - - - - - -</p>
             <div id="quiz"></div>
             <p>- - - - - - - - - - - - - - - - -</p>
-            <b>Take the right as positive, cor to 3 sig fig</b>
+            <b>Taking the right as positive, calculate:</b>
 
             <div id="answers">
                 <div formula="Symbol.d/Symbol.t">
-                    <span>Average speed = </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
+                    <span>Average speed = </span><input type="text" autocomplete="off"><span></span><span>ms⁻¹</span><feedback></feedback>
                 </div>
                 <div formula="Symbol.s/Symbol.t">
-                    <span>Average velocity = </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
+                    <span>Average velocity = </span><input type="text" autocomplete="off"><span></span><span>ms⁻¹</span><feedback></feedback>
                 </div>
             </div>
             <br>
-            <button onclick="check()">Submit</button>
-            <button onclick="show()">Show answer</button>
+            <button onclick="check()" id="button-submit">Submit</button>
+            <button onclick="show()" id="button-show-answer">Show answer</button>
             <button onclick="reload()">New question</button>
+            <br>
+            <p>- - - - - - - - - - - - - - - - -</p>
+            <p>All answers are corrected to 3 sig fig.</p>
+            <p>Allowed charcaters: 0123456789+-*/()</p>
+            <p>Invalid characters will be ignored completely</p>
         
         </div>
     </div>

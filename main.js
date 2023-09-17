@@ -81,44 +81,50 @@ function calculate() {
     Symbol.t = t;
 }
 
-function check() {
-    calculate();
+function forEachAnswer(callback) {
     childs(answers).forEach(field => {
-        let formula = field.getAttribute("formula");
-        let c = ize(eval(formula));
-        let nodes = childs(field);
+        callback(field, childs(field));
+    })
+}
+
+function enableButton(id) {
+    document.getElementById(id).disabled = false;
+    document.getElementById(id).classList.remove("disabled");
+}
+
+function disableButton(id) {
+    document.getElementById(id).disabled = true;
+    document.getElementById(id).classList.add("disabled");
+}
+
+function check() {
+    forEachAnswer((field, nodes) => {
         if (nodes[1].value == "") {
-            nodes[3].innerText = "Empty input";
+            nodes[4].innerText = "Empty input";
             return;
         }
         try {
-            nodes[3].innerText = calc(nodes[1].value) == c ? "Correct" : "Wrong";
+            nodes[4].innerText = calc(nodes[1].value) == nodes[2].innerText ? "Correct" : "Wrong";
         } catch (e) {
             console.log(e);
-            nodes[3].innerText = "Invalid input (error occured)"
+            nodes[4].innerText = "Invalid input (error occured)"
         }
     })
 }
 
 function show() {
-    calculate();
-    childs(answers).forEach(field => {
-        let formula = field.getAttribute("formula");
-        let c = ize(eval(formula));
-        let nodes = childs(field);
-        nodes[3].innerText = `Answer: ${c}`;
-    })
+    clearFeedback();
+    forEachAnswer((field, nodes) => {
+        nodes[1].classList.add("hidden");
+        nodes[2].classList.remove("hidden");
+    });
+    disableButton("button-show-answer");
+    disableButton("button-submit");
 }
 
-function clear() {
-    // buggy, should be unused
-    alert("an error occured.")
-    console.log("e")
-    childs(answers).forEach(field => {
-        let nodes = childs(field);
-        nodes[1].value = "";
-        nodes[3].innerText = "";
-        console.log(nodes);
+function clearFeedback() {
+    forEachAnswer((field, nodes) => {
+        nodes[4].innerText = "";
     })
 }
 
@@ -126,6 +132,9 @@ const quiz = document.getElementById("quiz");
 const answers = document.getElementById("answers");
 
 function reload() {
+    enableButton("button-show-answer");
+    enableButton("button-submit");
+    clearFeedback();
     motions = new Array();
     while (quiz.hasChildNodes()) {
         quiz.removeChild(quiz.childNodes[0]);
@@ -134,6 +143,13 @@ function reload() {
         motions.push(Motion.rand());
     }
     motions.forEach(m => m.display());
+    calculate();
+    forEachAnswer((field, nodes) => {
+        let correct = ize(eval(field.getAttribute("formula")));
+        nodes[1].classList.remove("hidden");
+        nodes[2].classList.add("hidden");
+        nodes[2].innerText = correct;
+    })
 }
 
 let motions;
