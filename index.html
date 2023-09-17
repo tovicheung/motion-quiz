@@ -1,23 +1,50 @@
-<link rel="stylesheet" href="style.css">
-<div id="main">
-    <b>Consider the following motions of a cart:</b>
-    <div id="quiz"></div>
-    <b>Take the right as positive, calculate the following (cor to 3 sig fig)</b>
-    <div id="answers">
-        <div formula="Symbol.d/Symbol.t">
-            <span>Average speed: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
-        </div>
-        <div formula="Symbol.s/Symbol.t">
-            <span>Average velocity: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    
+    <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" media="screen and (min-width: 601px)" href="styles/desktop.css" />
+    <link rel="stylesheet" media="screen and (max-width: 600px)" href="styles/mobile.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
+    <title>Motion Quiz</title>
+    <meta name="description" content="Fun quiz of motion (Physics)"> 
+    <meta property="og:title" content="Motion Quiz">
+    <meta property="og:description" content="Fun quiz of motion (Physics)">
+</head>
+<body>
+    <div class="container">
+        <div class="center">
+            <h1>motion quiz</h1>
+            <p>The following is a cart's motion</p>
+            <p>- - - - - - - - - - - - - - - - -</p>
+            <div id="quiz"></div>
+            <p>- - - - - - - - - - - - - - - - -</p>
+
+            <div id="answers">
+                <div formula="Symbol.d/Symbol.t">
+                    <span>Average speed: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
+                </div>
+                <div formula="Symbol.s/Symbol.t">
+                    <span>Average velocity: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
+                </div>
+            </div>
+            <br>
+            <button onclick="check()">Submit</button>
+            <button onclick="show()">Show answer</button>
+            <button onclick="reload()">New question</button>
+        
         </div>
     </div>
-    <br>
-    <button onclick="check()">Submit</button>
-    <button onclick="show()">Show answer</button>
-    <button onclick="reload()">New question</button>
-    <!-- <button onclick="clear()">Clear</button> BUGGY -->
-    <p>Valid characters: 0123456789.+-*/()</p>
-    <p>Ohter characters will be ignored</p>
-</div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
-<script src="main.js"></script>
+    <div class="footer">
+        <div class="social-links">
+            <a onclick="window.location.href = 'old/index.html'" style="font-size: 18px; cursor: pointer;">old version</a>
+            <a href="https://www.instagram.com/tovicheung" class="fab fa-instagram" target="_blank" rel="noopener noreferrer"></a>
+        </div>     
+    </div>  
+    <script src="main.js"></script>
+</body>
+</html>
