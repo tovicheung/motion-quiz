@@ -1,21 +1,23 @@
 <link rel="stylesheet" href="style.css">
-<h4>Consider the following motions of a cart:</h4>
-<div id="quiz"></div>
-<h5>Take the right as positive, calculate the following (cor to 3 sig fig)</h5>
-<div id="answers">
-    <div formula="Symbol.d/Symbol.t">
-        <span>Average speed: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
+<div id="main">
+    <b>Consider the following motions of a cart:</b>
+    <div id="quiz"></div>
+    <b>Take the right as positive, calculate the following (cor to 3 sig fig)</b>
+    <div id="answers">
+        <div formula="Symbol.d/Symbol.t">
+            <span>Average speed: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
+        </div>
+        <div formula="Symbol.s/Symbol.t">
+            <span>Average velocity: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
+        </div>
     </div>
-    <div formula="Symbol.s/Symbol.t">
-        <span>Average velocity: </span><input type="text" autocomplete="off"><span>ms⁻¹</span><feedback></feedback>
-    </div>
+    <br>
+    <button onclick="check()">Submit</button>
+    <button onclick="show()">Show answer</button>
+    <button onclick="reload()">New question</button>
+    <!-- <button onclick="clear()">Clear</button> BUGGY -->
+    <p>Valid characters: 0123456789.+-*/()</p>
+    <p>Ohter characters will be ignored</p>
 </div>
-<br>
-<button onclick="check()">Submit</button>
-<button onclick="show()">Show answer</button>
-<button onclick="reload()">New question</button>
-<!-- <button onclick="clear()">Clear</button> BUGGY -->
-<p>Valid characters: 0123456789.+-*/()</p>
-<p>Ohter characters will be ignored</p>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
 <script src="main.js"></script>
