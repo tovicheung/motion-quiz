@@ -34,7 +34,7 @@ class Motion {
             return `stops for ${this.duration}s`
         }
         let d = this.direction == -1 ? "left" : "right";
-        return `to the ${d} at ${this.magnitude} ms⁻¹ for ${this.duration}s`
+        return `moves to the ${d} at ${this.magnitude} ms⁻¹ for ${this.duration}s`
     }
 
     display() {

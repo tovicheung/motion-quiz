@@ -9,3 +9,7 @@ button {
 button:hover {
     background-color: lightblue;
 }
+
+#quiz {
+    margin: 1vw;
+}
